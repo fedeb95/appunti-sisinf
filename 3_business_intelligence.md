@@ -1,5 +1,5 @@
 # Architettura dei SI
-I sistemi informativi [operativi](./introduzione.html#si-operativi) o [istituzionali](./introduzione.html#si-istituzionali) si dividono in:
+I sistemi informativi [operativi](./1_introduzione.html#si-operativi) o [istituzionali](./1_introduzione.html#si-istituzionali) si dividono in:
 
 * ERP: Enterprise Resource Planner
 * CRM: Customer Relationship Management (distribuzione, vendita e post-vendita)
@@ -66,7 +66,7 @@ Quindi un DW dev'essere:
 * **tempo** fondamentale: tiene conto di tutte le transazioni
 * **non volatile**
 
-### Modalità di utilizzo
+### <a name="modalita-utilizzo"></a> Modalità di utilizzo
 Le modalità di utilizzo di una base dati sono:
 
 * **O**n**L**ine **T**ransaction **P**rocessing:
