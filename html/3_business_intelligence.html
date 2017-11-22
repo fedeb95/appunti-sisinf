@@ -778,7 +778,7 @@ pre.editor-colors .fold-marker:after {
 }
 </style>
   </head>
-  <body class='markdown-preview' data-use-github-style><h1>Architettura dei SI</h1>
+  <body class='markdown-preview' data-use-github-style><h1 id="architettura-dei-si">Architettura dei SI</h1>
 <p>I sistemi informativi <a href="./introduzione.html#si-operativi">operativi</a> o <a href="./introduzione.html#si-istituzionali">istituzionali</a> si dividono in:</p>
 <ul>
 <li>ERP: Enterprise Resource Planner</li>
@@ -804,13 +804,54 @@ pre.editor-colors .fold-marker:after {
 </ul>
 </li>
 </ul>
-<h2>Dai dati alle informazioni</h2>
+<h2 id="dai-dati-alle-informazioni">Dai dati alle informazioni</h2>
 <p>I dati aggregati sono elaborati a partire dai dati dei sistemi operativi, attraverso un processo di selezione e sintesi progressiva.</p>
 <p>Le informazioni aggregate sono:</p>
 <ul>
 <li>Preventive: esprimono obiettivi e traguardi, estratte da piani e budget</li>
 <li>Consuntive: riguardano risultati effettivi, dai SI operativi (e.g. vendite)</li>
 </ul>
-<h2>Business Intelligence come DSS</h2>
-<p>Essere in grado di prendere decisioni rapide e migliori sulla base di dati aggregati (indici)</p></body>
+<h2 id="business-intelligence-come-dss">Business Intelligence come DSS</h2>
+<p>Essere in grado di prendere decisioni rapide e migliori sulla base di dati aggregati (indici)</p>
+<p>Si parla più propriamente di <em>sistema</em> di BI, in quanto sono necessari:</p>
+<ul>
+<li>Hardware dedicato</li>
+<li>Infrastrutture di rete</li>
+<li>DBMS</li>
+<li>Software di back-end</li>
+<li>Software di front-end</li>
+</ul>
+<p>Il ruolo chiave di una piattaforma di BI è la trasformazione di dati aziendali in informazioni fruibili a diversi livelli di dettaglio.</p>
+<h2>Data Warehousing</h2>
+<p>Collezione di metodi, tecnologie e strumenti di ausilio al <em>knowledge worker</em> per condurre analisi dei dati.</p>
+<p>Requisiti:</p>
+<ul>
+<li><strong>Accessibilità</strong> a utenti con conoscenze limitate di informatica</li>
+<li><strong>Integrazione</strong> dei dati da database diversi, strutturati in modi diversi</li>
+<li><strong>Flessibilità</strong> di integrazione</li>
+<li><strong>Sintesi</strong> per analisi mirate ed efficaci</li>
+<li>Rappresentazione <strong>multidimensionale</strong>, intuitiva ed efficacemente manipolabile, soprattutto in tempo e area geografica</li>
+<li><strong>Correttezza e completezza</strong> dei dati integrati</li>
+</ul>
+<h2 id="data-warehouse">Data Warehouse</h2>
+<p>Cuore del data warehousing, collezione di dati di supporto al processo decisionale che richiede una modellazione specifica, finalizzata all'analisi dei dati.</p>
+<p>Quindi un DW dev'essere:</p>
+<ul>
+<li>orientato ai <strong>soggetti</strong>: tiene conto di chi lo utilizza</li>
+<li><strong>integrato</strong> e consistente: vi confluiscono dati da di versi sistemi operazionali<ul>
+<li>come inserirli?</li>
+<li>come renderli consistenti fra loro?</li>
+</ul>
+</li>
+<li><strong>tempo</strong> fondamentale: tiene conto di tutte le transazioni</li>
+<li><strong>non volatile</strong></li>
+</ul>
+<h3>Modalità di utilizzo</h3>
+<p>Le modalità di utilizzo di una base dati sono:</p>
+<ul>
+<li><strong>O</strong>n<strong>L</strong>ine <strong>T</strong>ransaction <strong>P</strong>rocessing:
+tradizionale modalità, dati di dettaglio aggiornati, proprietà ACIDE</li>
+<li><strong>O</strong>n<strong>L</strong>ine <strong>A</strong>nalytical <strong>P</strong>rocessing:
+operazioni complesse ed estemporanee, dati storici, operazioni di sola lettura</li>
+</ul></body>
 </html>

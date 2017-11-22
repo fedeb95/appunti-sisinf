@@ -31,3 +31,45 @@ Le informazioni aggregate sono:
 
 ## Business Intelligence come DSS
 Essere in grado di prendere decisioni rapide e migliori sulla base di dati aggregati (indici)
+
+Si parla più propriamente di *sistema* di BI, in quanto sono necessari:
+
+* Hardware dedicato
+* Infrastrutture di rete
+* DBMS
+* Software di back-end
+* Software di front-end
+
+Il ruolo chiave di una piattaforma di BI è la trasformazione di dati aziendali in informazioni fruibili a diversi livelli di dettaglio.
+
+## Data Warehousing
+Collezione di metodi, tecnologie e strumenti di ausilio al *knowledge worker* per condurre analisi dei dati.
+
+Requisiti:
+
+* **Accessibilità** a utenti con conoscenze limitate di informatica
+* **Integrazione** dei dati da database diversi, strutturati in modi diversi
+* **Flessibilità** di integrazione
+* **Sintesi** per analisi mirate ed efficaci
+* Rappresentazione **multidimensionale**, intuitiva ed efficacemente manipolabile, soprattutto in tempo e area geografica
+* **Correttezza e completezza** dei dati integrati
+
+## Data Warehouse
+Cuore del data warehousing, collezione di dati di supporto al processo decisionale che richiede una modellazione specifica, finalizzata all'analisi dei dati.
+
+Quindi un DW dev'essere:
+
+* orientato ai **soggetti**: tiene conto di chi lo utilizza
+* **integrato** e consistente: vi confluiscono dati da di versi sistemi operazionali
+  * come inserirli?
+  * come renderli consistenti fra loro?
+* **tempo** fondamentale: tiene conto di tutte le transazioni
+* **non volatile**
+
+### Modalità di utilizzo
+Le modalità di utilizzo di una base dati sono:
+
+* **O**n**L**ine **T**ransaction **P**rocessing:
+  tradizionale modalità, dati di dettaglio aggiornati, proprietà ACIDE
+* **O**n**L**ine **A**nalytical **P**rocessing:
+  operazioni complesse ed estemporanee, dati storici, operazioni di sola lettura
