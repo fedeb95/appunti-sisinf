@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>lezione_1</title>
+      <title>3_business_intelligence</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -778,90 +778,39 @@ pre.editor-colors .fold-marker:after {
 }
 </style>
   </head>
-  <body class='markdown-preview' data-use-github-style><h1 id="introduzione">Introduzione</h1>
-<h2 id="cos-un-si">Cos'è un SI</h2>
-<p>Insieme di dati, processi e strumenti per la loro acquisizione,
-memorizzazione ed elaborazione, durante i processi aziendali.</p>
-<h2 id="evoluzione-dei-si">Evoluzione dei SI</h2>
-<p>I primi SI trattavano dati strutturati in formati predefiniti,
-automatizzando attività ad alta proceduralità, come amministrazione o contabilità.</p>
-<p>Successivamente il SI ha assunto un ruolo di rilievo nel supporto alle
-decisioni per processi direzionali, trattando anche tipi di dati non strutturati come testo o immmagini, fino ai più recenti IoT e Big Data.</p>
-<h3 id="sistemi-informativi-operativi-e-di-supporto-alle-decisioni">Sistemi informativi operativi e di supporto alle decisioni</h3>
-<p>Un sistema informativo è operativo se pienamente automatizzato, mentre di supporto alle decisioni se un operatore utilizza lo strumento come supporto per la gestione.</p>
-<h1 id="suddivisione-dei-sistemi-informativi">Suddivisione dei sistemi informativi</h1>
-<p>Ci sono diverse prospettive per analizzare un sistema informativo:</p>
+  <body class='markdown-preview' data-use-github-style><h1>Architettura dei SI</h1>
+<p>I sistemi informativi <a href="./introduzione.html#si-operativi">operativi</a> o <a href="./introduzione.html#si-istituzionali">istituzionali</a> si dividono in:</p>
 <ul>
-<li><a href="#modello-organizzativo">Modello organizzativo</a>: a cosa serve</li>
-<li><a href="#modello-funzionale">Modello funzionale</a>: che cosa fa</li>
-<li><a href="#modello-informatico">Modello informatico</a>: come è fatto</li>
+<li>ERP: Enterprise Resource Planner</li>
+<li>CRM: Customer Relationship Management (distribuzione, vendita e post-vendita)</li>
 </ul>
-<h2 id="-a-name-modello-organizzativo-a-modello-organizzativo"><a name="modello-organizzativo"></a>Modello organizzativo</h2>
-<p>Risponde alla domanda: <em>"A che cosa serve il SI?"</em></p>
-<p>Secondo questo modello, o punto di vista, i sistemi informativi sono classificabili come:</p>
+<p>I processi si dividono in:</p>
 <ul>
-<li><a href="#si-operativi">SI operativi</a></li>
-<li><a href="#si-istituzionali">SI istituzionali</a></li>
-<li><a href="#si-direzionali">SI direzionali</a></li>
+<li>operativi: <a href="./business_process.html#teoria-simon">decisioni strutturate</a>, con regole precise</li>
+<li>direzionali: <a href="./business_process.html#teoria-simon">decisioni non strutturate</a>,dati fortemente aggregati</li>
 </ul>
-<h3 id="-a-name-si-operativi-a-si-operativi"><a name="si-operativi"></a>SI operativi</h3>
-<p>Un sistema informativo operativo informatizza processi volti all'esecuzione di attività, chiamati anche <em>Transaction operative systems</em><a name="transaction-operative"></a>.
-Per esempio potrebbe occuparsi della costruzione di un prodotto assemblandone le parti.</p>
-<p>Il ruolo del SI è proporzinale all'intensità informativa del settore, per esempio è più importante in un'azienda di telecomunicazione che non in un'azienda manifatturiera.</p>
-<h3 id="-a-name-si-istituzionali-a-si-istituzionali"><a name="si-istituzionali"></a>SI istituzionali</h3>
-<p>Sono di supporto ad attività gestionali, indispensabili per l'esecuzione dei processi produttivi, ma non parte di essi.</p>
-<h3 id="-a-name-si-direzionali-a-si-direzionali"><a name="si-direzionali"></a>SI direzionali</h3>
-<p>Supportano il management aziendale nei processi direzionali, sono quindi di supporto alle decisioni. Sono basati sui <a href="#si-operativi">SI operativi</a>, dai quali importano deti elementari per produrre dati aggregati o indici. Un SI del genere può essere usato, per esempio, per cercare strategie per l'incremento delle vendite, etc.</p>
-<p>Sono utilizzati nel modello del ciclo di controllo:</p>
-<ol>
-<li>Definizione obiettivi del processo</li>
-<li>Analisi dei risultati ottenuti</li>
-<li>Definizione di azioni correttive</li>
-</ol>
-<h4 id="business-intelligence">Business Intelligence</h4>
-<p>SI direzionali per la Business Intelligence analizzano i dati aziendali per ricavare nuove regole di business:</p>
+<p>Di conseguenza i sistemi informativi possono essere:</p>
 <ul>
-<li>Analisi dei clienti: profilazione</li>
-<li>Analisi del prodotto: affidabilità</li>
-<li>Analisi delle prestazioni: processi gestionali e produttivi</li>
+<li><strong>T</strong>ransaction <strong>P</strong>rocessing <strong>S</strong>ystem: per processi operativi, elaborano le transazioni e i relativi dati<ul>
+<li>enfasi sull'automazione</li>
+<li>molti utenti</li>
+<li>ambito limitato, per le singole funzioni</li>
 </ul>
-<h2 id="-a-name-modello-funzionale-a-modello-funzionale"><a name="modello-funzionale"></a>Modello funzionale</h2>
-<p>Risponde alla domanda: <em>"Che cosa fa il SI?"</em></p>
-<p>Secondo questo modello, un SI può essere descritto dalle seguenti prospettive:</p>
-<ul>
-<li><a href="#modello-casi-uso">Modello dei casi d'uso</a></li>
-<li><a href="#modello-processi">Modello dei processi</a></li>
-<li><a href="#modello-dati">Modello dei dati</a></li>
+</li>
+<li><strong>D</strong>ecision <strong>S</strong>upport <strong>S</strong>ystem: per i processi direzionali<ul>
+<li>enfasi sulla generazione di informazione</li>
+<li>pochi utenti</li>
+<li>ambito globale, a livello di impresa</li>
 </ul>
-<h3 id="-a-name-modello-casi-uso-a-modello-dei-casi-d-uso"><a name="modello-casi-uso"></a>Modello dei casi d'uso</h3>
-<p>Specifica le interazioni tra attori e sistema, solitamente UML. Descrive i requisiti delle singole elaborazioni.</p>
-<p>Possono essere correlati ai processi (e ai dati) tramite un'estesione di UML, <strong>Assembly Lines</strong>, presenta ogni use case unito al processo corrispondente e ai dati da esso elaborati.</p>
-<h3 id="-a-name-modello-processi-a-modello-dei-processi"><a name="modello-processi"></a>Modello dei processi</h3>
-<p>Activity Diagram</p>
-<h3 id="-a-name-modello-dati-a-modello-dei-dati"><a name="modello-dati"></a>Modello dei dati</h3>
-<p>I dati si dividono in:</p>
-<ul>
-<li>Dati anagrafici: parte <em>statica</em> del SI, descrive le proprietà strutturali del dominio</li>
-<li>Dati dinamici: parte <em>dinamica</em>, eventi registrati (o <a href="#transaction-operative">transazioni</a>)</li>
-<li>Indici: risultati di elaborazioni periodiche.</li>
+</li>
 </ul>
-<h2 id="-a-name-modello-informatico-a-modello-informatico"><a name="modello-informatico"></a>Modello informatico</h2>
-<p>Risponde alla domanda: <em>"Come è realizzato <del>implementato</del> il SI?"</em></p>
-<p>Fornisce una descrizione del sistema informativo attraverso:</p>
+<h2>Dai dati alle informazioni</h2>
+<p>I dati aggregati sono elaborati a partire dai dati dei sistemi operativi, attraverso un processo di selezione e sintesi progressiva.</p>
+<p>Le informazioni aggregate sono:</p>
 <ul>
-<li><a href="#modello-applicativo">Modello applicativo</a></li>
-<li><a href="#modello-tecnologico">Modello tecnologico</a></li>
+<li>Preventive: esprimono obiettivi e traguardi, estratte da piani e budget</li>
+<li>Consuntive: riguardano risultati effettivi, dai SI operativi (e.g. vendite)</li>
 </ul>
-<h3 id="-a-name-modello-applicativo-modello-applicativo"><a name="modello-applicativo">Modello applicativo</a></h3>
-<p>Formato da diversi strati:</p>
-<ol>
-<li>Strato di presentazione: descrive l'interazione finale con  l'utente, solitamente tramite GUI basate sul web-based</li>
-<li>Logica applicativa: procedure con cui i dati acquisiti tramite GUI o base dati sono elaborati</li>
-<li>Strato dei dati: strumenti per definire le basi di dati e accedere ai dati (DBMS)</li>
-</ol>
-<h3 id="-a-name-modello-tecnologico-modello-tecnologico"><a name="modello-tecnologico">Modello tecnologico</a></h3>
-<ul>
-<li>Architettura hardware: insiemi dei sistemi hardware, architettura client-server la più utilizzata</li>
-<li>Architettura di rete: infrastruttura di rete usata per trasmettere le informazioni</li>
-</ul></body>
+<h2>Business Intelligence come DSS</h2>
+<p>Essere in grado di prendere decisioni rapide e migliori sulla base di dati aggregati (indici)</p></body>
 </html>
