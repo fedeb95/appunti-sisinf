@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>3_business_intelligence</title>
+      <title>6_progettazione_concettuale</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -778,80 +778,109 @@ pre.editor-colors .fold-marker:after {
 }
 </style>
   </head>
-  <body class='markdown-preview' data-use-github-style><h1>Architettura dei SI</h1>
-<p>I sistemi informativi <a href="./1_introduzione.html#si-operativi">operativi</a> o <a href="./1_introduzione.html#si-istituzionali">istituzionali</a> si dividono in:</p>
+  <body class='markdown-preview' data-use-github-style><h1>Progettazione concettuale</h1>
+<p>Introduce gli elementi dimenisonali nello schema globale riconciliato in seguito all'integrazione.</p>
 <ul>
-<li>ERP: Enterprise Resource Planner</li>
-<li>CRM: Customer Relationship Management (distribuzione, vendita e post-vendita)</li>
+<li>Identificazione di fatti, misure e  dimenisoni</li>
+<li>Derivazione di un grafo dimenisonale</li>
+<li>Input per la progettazione logica</li>
 </ul>
-<p>I processi si dividono in:</p>
+<h2>Il Dimensional Fact Model DFM</h2>
+<p>Si tratta di un modello concettuale grafico per DW, pensato per:</p>
 <ul>
-<li>operativi: <a href="./2_business_process.html#teoria-simon">decisioni strutturate</a>, con regole precise</li>
-<li>direzionali: <a href="./2_business_process.html#teoria-simon">decisioni non strutturate</a>,dati fortemente aggregati</li>
+<li>supportare il progetto concettuale</li>
+<li>creare una rappresentazione da cui partire per il progetto logico</li>
+<li>documentazione</li>
 </ul>
-<p>Di conseguenza i sistemi informativi possono essere:</p>
+<h3>DMF: costrutti base</h3>
 <ul>
-<li><strong>T</strong>ransaction <strong>P</strong>rocessing <strong>S</strong>ystem: per processi operativi, elaborano le transazioni e i relativi dati<ul>
-<li>enfasi sull'automazione</li>
-<li>molti utenti</li>
-<li>ambito limitato, per le singole funzioni</li>
+<li><strong>Fatto</strong>: concetto di interesse per il processo decisionale, tipicamente un insieme di eventi. Deve essere dianmico, evolvere nel tempo</li>
+<li><strong>Dimensione</strong>: proprietà con dominio finito di un fatto, ne descrive una coordinata di analisi</li>
+<li><strong>Misura</strong>: proprietà numerica di un fatto, aspetto quantitativo di interesse</li>
+</ul>
+<h3>Altri costrutti</h3>
+<ul>
+<li><strong>Attributo dimensionale</strong>: un ulteriore attributo, a valori discreti, che descrive una dimensione di analisi</li>
+<li><strong>Gerarchia</strong>: albero direzionato i cui nodi sono attributi dimensionali, gli archi modellano associazioni molti a uno (dipendenze funzionali) tra attributi</li>
+<li>Attributo dscrittivo: contiene informazioni aggiuntive, ma non significativo per l'aggregazione. Sono sempre foglie della gerarchia <del>ovviamente</del>.</li>
+<li>Archi opzionali: l'associazione non è definita per un sottoinsieme di eventi (e.g. l'attributo dieta assume valori solo per i prodotti alimentari, null negli altri casi). Indicato con un tratto sull'arco.</li>
+</ul>
+<h3>Eventi</h3>
+<ul>
+<li><strong>Evento primario</strong>: particolare occorrenza di un fatto, ennupla con un valore per ogni dimensione</li>
+<li><strong>Evento secondatio</strong>: insieme di eventi primari, ennupla di attributi dimensionali, aggrega gli eventi primari corrispondenti, con un opportuno operatore</li>
+<li>Pattern: combinazione di attributi dimensionali, denota una prospettiva di analisi</li>
+</ul>
+<p><del>Un evento primario sta a un evento secondario come un evento sta a un gruppo di eventi secondo un certo pattern</del></p>
+<h3>Aggregazione</h3>
+<p>L'aggregazione richiede di definire opportuni operatori per comporre i valori delle misure. Queste si suddividono, in base a quali operatori sono applicabili, in:</p>
+<ul>
+<li>Misure di flusso: sempre aggregabili con la somma</li>
+<li>Misure di livello: non ha senso sommarle sula gerarchia temporale, ma sulle altre gerarchie (e.g. numero di abitanti in città al ...)</li>
+<li>Misure unitarie: non si possono mai sommare, espresse in termini relativi (e.g. percentuale)</li>
+</ul>
+<h4>Additività</h4>
+<p>Una misura è detta additiva su una dimensione se i suoi valori possono essere sommati lungo la corrispondente gerarchia. Se una misura è di flusso non è specificato, altrimenti vengono indicati gli operatori utilizzabili, con un arco tratteggiato tra misura e attributo, etichettato col nome dell'operatore.</p>
+<h4>Convergenza</h4>
+<p>Rappresenta un vincolo d'integrità, due archi finiscono nello stesso attributo dimensionale. E.g, lo stato di un distretto è lo stesso di un negozio.</p>
+<h4>Gerarchia condivisa</h4>
+<p>Nodo in comune fra due gerarchie, i dati però sono diversi. Indicato con un cerchio all'interno del nodo e due o più frecce verso lo stesso.</p>
+<h4>Schemi di fatto vuoti</h4>
+<p>Uno schema di fatto è vuoto se non ci sono misure corrispondenti. In questo caso registra semplicemente il verificarsi di eventi. L'informazione di un evento secondario è il numero di eventi primari (COUNT).</p>
+<h2>Progettazione concettuale di DW: come</h2>
+<p>Passi di progettazione:</p>
+<ul>
+<li>definizione dei fatti</li>
+<li>per ogni fatto:<ul>
+<li><a href="#costruzione-albero">costruzione</a> <strong>albero degli attributi</strong></li>
+<li><a href="#editing-albero"><strong>editing</strong></a> dell'albero</li>
+<li>definizione delle <a href="#definizione-dimensioni"><strong>dimensioni</strong></a></li>
+<li>definizione delle <a href="#definizione-misure"><strong>misure</strong></a></li>
+<li>creazione dello <a href="#creazione-schema"><strong>schema</strong></a> di fatto</li>
 </ul>
 </li>
-<li><strong>D</strong>ecision <strong>S</strong>upport <strong>S</strong>ystem: per i processi direzionali<ul>
-<li>enfasi sulla generazione di informazione</li>
-<li>pochi utenti</li>
-<li>ambito globale, a livello di impresa</li>
+</ul>
+<h3>Definizione dei fatti</h3>
+<p>Tipicamente sono eventi che accadono dinamicamente. Dipende dai requisiti dell'analisi, può corrispondere ad un'entità o una relazione da reificare.</p>
+<h3>Albero degli attributi</h3>
+<ul>
+<li>La <strong>radice</strong> corrisponde all'identificatore del <strong>fatto</strong></li>
+<li>Ogni <strong>vertice</strong> è un <strong>attributo</strong> dello schema sorgente</li>
+<li>Per ogni vertice <em>v</em>, il corrispondente attributo determina funzionalemnte i discendenti di <em>v</em></li>
+</ul>
+<h4><a name="costruzione-albero"></a>Costruzione dell'albero degli attributi</h4>
+<ul>
+<li>Può essere fatta in modo automatico, navigando ricorsivamente le dipendenze funzionali espresse nello schema sorgente dalle associazioni 1:1</li>
+<li>Per ogni entità <em>E</em>, si crea nell'albero un vertice <em>v</em> corrispondente all'identificatore <del>alla chiave</del> di <em>E</em> e si aggiunge un figlio per ogni altro attributo di <em>E</em><ul>
+<li>Per ogni relazione R con cardinalità massima pari a 1 e diretta verso un'entità <em>G</em>, si aggiungono a <em>v</em> tanti figli quanti sono gli attributi di <em>R</em>, poi ricorsione su <em>G</em>, rendendo l'identificatore di <em>G</em> figlio di <em>v</em></li>
 </ul>
 </li>
 </ul>
-<h2>Dai dati alle informazioni</h2>
-<p>I dati aggregati sono elaborati a partire dai dati dei sistemi operativi, attraverso un processo di selezione e sintesi progressiva.</p>
-<p>Le informazioni aggregate sono:</p>
+<p>Si parte dal fatto <em>F</em>.</p>
+<h4><a name="editing-albero"></a>Editing</h4>
+<p>In genere non tutti gli attributi sono d'interesse per il DM, quindi l'albero viene modificato tramite:</p>
 <ul>
-<li>Preventive: esprimono obiettivi e traguardi, estratte da piani e budget</li>
-<li>Consuntive: riguardano risultati effettivi, dai SI operativi (e.g. vendite)</li>
+<li><strong>Potatura</strong>: si elimina il sottoalbero con radice in v</li>
+<li><strong>Innesto</strong>: si collegano tutti i figli di v al padre v', eliminando v. Utile se v non interessa ma i suoi figli sì</li>
 </ul>
-<h2>Business Intelligence come DSS</h2>
-<p>Essere in grado di prendere decisioni rapide e migliori sulla base di dati aggregati (indici)</p>
-<p>Si parla più propriamente di <em>sistema</em> di BI, in quanto sono necessari:</p>
+<p>L'editing porta ad un'alterazione delle granularità, rendendo necessaria una pre aggregazione.</p>
+<h4><a name="definizione-dimensioni"></a> Definizione delle dimensioni</h4>
+<p>Le dimensioni vanno scelte tra i figli della radice. La loro scelta è cruciale perché definisce la granularità degli eventi primari. Il tempo corrisponde sempre ad una dimensione. Se non presente nelle sorgenti, viene aggiunto come timestamp del caricamento dei dati nel DW.</p>
+<h4><a name="definizione-misure"></a>Definizione delle misure</h4>
+<p>Le misure sono i figli della radice che non sono dimensioni.
+Altrimenti sono definite applicando funzioni di aggregazione ad attributi numerici dell'albero.</p>
+<h4><a name="creazione-schema"></a>Creazione dello schema di fatto</h4>
+<p>L'albero degli attributi, una volta fatto l'editing, viene tradotto in uno schema di fatto:</p>
 <ul>
-<li>Hardware dedicato</li>
-<li>Infrastrutture di rete</li>
-<li>DBMS</li>
-<li>Software di back-end</li>
-<li>Software di front-end</li>
-</ul>
-<p>Il ruolo chiave di una piattaforma di BI è la trasformazione di dati aziendali in informazioni fruibili a diversi livelli di dettaglio.</p>
-<h2>Data Warehousing</h2>
-<p>Collezione di metodi, tecnologie e strumenti di ausilio al <em>knowledge worker</em> per condurre analisi dei dati.</p>
-<p>Requisiti:</p>
-<ul>
-<li><strong>Accessibilità</strong> a utenti con conoscenze limitate di informatica</li>
-<li><strong>Integrazione</strong> dei dati da database diversi, strutturati in modi diversi</li>
-<li><strong>Flessibilità</strong> di integrazione</li>
-<li><strong>Sintesi</strong> per analisi mirate ed efficaci</li>
-<li>Rappresentazione <strong>multidimensionale</strong>, intuitiva ed efficacemente manipolabile, soprattutto in tempo e area geografica</li>
-<li><strong>Correttezza e completezza</strong> dei dati integrati</li>
-</ul>
-<h2>Data Warehouse</h2>
-<p>Cuore del data warehousing, collezione di dati di supporto al processo decisionale che richiede una modellazione specifica, finalizzata all'analisi dei dati.</p>
-<p>Quindi un DW dev'essere:</p>
-<ul>
-<li>orientato ai <strong>soggetti</strong>: tiene conto di chi lo utilizza</li>
-<li><strong>integrato</strong> e consistente: vi confluiscono dati da di versi sistemi operazionali<ul>
-<li>come inserirli?</li>
-<li>come renderli consistenti fra loro?</li>
+<li>le gerarchie corrispondono ai sottoalberi dell'albero degli attributi, con le dimensioni come radice</li>
+<li>è possibile potare e innestare per eliminare dettagli inutili</li>
+<li>è possibile aggiungere attributi dimensionali (e.g. tempo)</li>
+<li>Gli attributi non utilizzati per l'aggregazione diventano descrittivi</li>
+<li>i figli della radice che non sono né misure né dimensioni<ul>
+<li>se la granularità conincide con quella dell'entità di F, attributi descrittivi</li>
+<li>altrimenti devono essere potati</li>
 </ul>
 </li>
-<li><strong>tempo</strong> fondamentale: tiene conto di tutte le transazioni</li>
-<li><strong>non volatile</strong></li>
-</ul>
-<h3><a name="modalita-utilizzo"></a> Modalità di utilizzo</h3>
-<p>Le modalità di utilizzo di una base dati sono:</p>
-<ul>
-<li><strong>O</strong>n<strong>L</strong>ine <strong>T</strong>ransaction <strong>P</strong>rocessing:
-tradizionale modalità, dati di dettaglio aggiornati, proprietà ACIDE</li>
-<li><strong>O</strong>n<strong>L</strong>ine <strong>A</strong>nalytical <strong>P</strong>rocessing:
-operazioni complesse ed estemporanee, dati storici, operazioni di sola lettura</li>
+<li>identificazione di eventuali non additività</li>
 </ul></body>
 </html>

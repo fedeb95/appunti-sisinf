@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <title>3_business_intelligence</title>
+      <title>5_progetto_dw</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -778,80 +778,125 @@ pre.editor-colors .fold-marker:after {
 }
 </style>
   </head>
-  <body class='markdown-preview' data-use-github-style><h1>Architettura dei SI</h1>
-<p>I sistemi informativi <a href="./1_introduzione.html#si-operativi">operativi</a> o <a href="./1_introduzione.html#si-istituzionali">istituzionali</a> si dividono in:</p>
+  <body class='markdown-preview' data-use-github-style><h1>Progetto DW</h1>
+<p>Nel progettare un DW, sono possibili due approcci:</p>
 <ul>
-<li>ERP: Enterprise Resource Planner</li>
-<li>CRM: Customer Relationship Management (distribuzione, vendita e post-vendita)</li>
+<li><a href="#top-down">Top-down</a></li>
+<li><a href="#bottom-up">Bottom-up</a></li>
 </ul>
-<p>I processi si dividono in:</p>
+<h3><a name="top-down"></a>Approccio top-down</h3>
+<p>Vantaggi:</p>
 <ul>
-<li>operativi: <a href="./2_business_process.html#teoria-simon">decisioni strutturate</a>, con regole precise</li>
-<li>direzionali: <a href="./2_business_process.html#teoria-simon">decisioni non strutturate</a>,dati fortemente aggregati</li>
+<li>promette ottimi risultati perché si basa su una visione globale</li>
 </ul>
-<p>Di conseguenza i sistemi informativi possono essere:</p>
+<p>Svantaggi:</p>
 <ul>
-<li><strong>T</strong>ransaction <strong>P</strong>rocessing <strong>S</strong>ystem: per processi operativi, elaborano le transazioni e i relativi dati<ul>
-<li>enfasi sull'automazione</li>
-<li>molti utenti</li>
-<li>ambito limitato, per le singole funzioni</li>
+<li>il preventivo di costi onerosi e i lunghi tempi di attesa scoraggiano dall'intraprendere il progetto</li>
+<li>affrontare contemporaneamente analisi e riconciliazione di tutte le sorgenti è estremamente complesso</li>
+<li>impossibile prevedere le necessità di tutte le aree, l'analisi rischia una paralisi</li>
+<li>non consegnare un prototipo in poco tempo porta disinteresse</li>
+</ul>
+<h3><a name="bottom-up"></a>Approccio bottom-up</h3>
+<p>Vantaggi:</p>
+<ul>
+<li>risultati concreti in tempi brevi</li>
+<li>ridotti investimenti finanziari</li>
+<li>permette di studiare solo le problematiche del data mart in oggetto</li>
+<li>fornisce un riscontro immediato sull'utilità del sistema</li>
+<li>mantiene elevata l'attenzione sul progetto</li>
+</ul>
+<p>Svantaggi:</p>
+<ul>
+<li>visione parziale del dominio di interesse</li>
+</ul>
+<h2>Ciclo di sviluppo</h2>
+<ul>
+<li>Definizione obiettivi e pianificazione</li>
+<li>Progettazione infrastruttura</li>
+<li>Iterativamente, progettazione e sviluppo dei data mart</li>
+</ul>
+<p>Il primo data mart da prototipare deve essere quello più importante per l'azienda, appoggiandosi su fonti di dati già disponibili e consistenti.</p>
+<p>La progettazione di un DM/DW è diversa da una normale base di dati:</p>
+<ul>
+<li>i dati hanno caratteristiche diverse</li>
+<li>vincolata dalle basi di dati esistenti</li>
+<li>guidata da criteri differenti</li>
+</ul>
+<h2>Progettazione</h2>
+<p>Attività principali:</p>
+<ul>
+<li><a href="#analisi">Analisi</a></li>
+<li><a href="#integrazione">Integrazione</a></li>
+<li>Progettazione<ul>
+<li>concettuale</li>
+<li>logica</li>
+<li>fisica</li>
 </ul>
 </li>
-<li><strong>D</strong>ecision <strong>S</strong>upport <strong>S</strong>ystem: per i processi direzionali<ul>
-<li>enfasi sulla generazione di informazione</li>
-<li>pochi utenti</li>
-<li>ambito globale, a livello di impresa</li>
+</ul>
+<h3><a name="analisi"></a>Analisi</h3>
+<p>I dati in ingresso sono:</p>
+<ul>
+<li>requisiti: le esigenze aziendali</li>
+<li>descrizione delle basi di dati aziendali</li>
+<li>descrizione di altre sorgenti informative</li>
+</ul>
+<p>Analisi delle sorgenti operazionali:</p>
+<ul>
+<li>Selezione delle sorgenti informative</li>
+<li>Traduzione in un modello concettuale di riferimento</li>
+<li>Analisi delle sorgenti informative</li>
+</ul>
+<h2><a name="integrazione"></a>Integrazione</h2>
+<p>Fusione dei dati in un'unica base di dati globale. Scopo dell'integrazione è identificare tutte le porzioni di diverse sorgenti che si riferiscono a uno stesso aspetto della realtà, per riconciliarle. Vanno identificati, analizzati e risolti i conflitti.</p>
+<p>Il risultato è uno schema riconciliato, in seguito è necessario completare la rappresentazione dei concetti dimensionali, implementare un modello logico e creare indici per ottimizzare le prestazioni.</p>
+<h3>Reverse Engineering</h3>
+<p>Per ragionare su schemi eterogenei è necessario un formalismo comune, cioè un modello concettuale. Questo va derivato dagli schemi logici delle basi di dati. Il reverse engineering è svolto in modo semiautomatico.</p>
+<h3>Analisi delle sorgenti operazionali</h3>
+<p>Il progettista acquisisce una conoscenza delle sorgenti attraverso:</p>
+<ul>
+<li>ricognizione: esame approfondito degli schemi</li>
+<li>normalizzazione: correggere gli schemi locali per modellare meglio il sistema applicativo (e.g. dipendenze funzionali implicite)</li>
+</ul>
+<h3>Integrazione di schemi</h3>
+<p>L'integrazione è orientata all'identificazione, analisi e risoluzione di conflitti, tramite:</p>
+<ul>
+<li>individuazione delle <strong>corrispondenze</strong> tra i concetti in <strong>schemi diversi</strong></li>
+<li>definizione di un'<strong>unica rappresentazione</strong> globale</li>
+<li>creazione di un <strong>unico schema</strong></li>
+</ul>
+<h3>Strategie di integrazione</h3>
+<ul>
+<li><strong>Strategia Binaria</strong>: si parte da due sorgenti, riconciliate in uno schema intermedio, poi riconciliato con un'altra, fino allo schema finale</li>
+<li><strong>Strategia N-aria</strong>: si deriva lo schema finale direttamente da tutte le sorgenti</li>
+<li><strong>Strategia mista</strong>: n sorgenti formano schemi intermedi, riconciliati in vari passi a quello finale</li>
+</ul>
+<p>Tramite Schema matching vengono trovati i matching concept tra due schemi e <strong>proprietà interschema</strong> (vincoli tra concetti di schemi differenti e.g. subset), poi unificati tramite allineamento e fusione.</p>
+<h4>Conflitti</h4>
+<ul>
+<li>Terminologici:<ul>
+<li>Omonimi: stesso nome, ma significati diversi</li>
+<li>Sinonimi: nomi diversi, ma stesso significato</li>
 </ul>
 </li>
-</ul>
-<h2>Dai dati alle informazioni</h2>
-<p>I dati aggregati sono elaborati a partire dai dati dei sistemi operativi, attraverso un processo di selezione e sintesi progressiva.</p>
-<p>Le informazioni aggregate sono:</p>
-<ul>
-<li>Preventive: esprimono obiettivi e traguardi, estratte da piani e budget</li>
-<li>Consuntive: riguardano risultati effettivi, dai SI operativi (e.g. vendite)</li>
-</ul>
-<h2>Business Intelligence come DSS</h2>
-<p>Essere in grado di prendere decisioni rapide e migliori sulla base di dati aggregati (indici)</p>
-<p>Si parla più propriamente di <em>sistema</em> di BI, in quanto sono necessari:</p>
-<ul>
-<li>Hardware dedicato</li>
-<li>Infrastrutture di rete</li>
-<li>DBMS</li>
-<li>Software di back-end</li>
-<li>Software di front-end</li>
-</ul>
-<p>Il ruolo chiave di una piattaforma di BI è la trasformazione di dati aziendali in informazioni fruibili a diversi livelli di dettaglio.</p>
-<h2>Data Warehousing</h2>
-<p>Collezione di metodi, tecnologie e strumenti di ausilio al <em>knowledge worker</em> per condurre analisi dei dati.</p>
-<p>Requisiti:</p>
-<ul>
-<li><strong>Accessibilità</strong> a utenti con conoscenze limitate di informatica</li>
-<li><strong>Integrazione</strong> dei dati da database diversi, strutturati in modi diversi</li>
-<li><strong>Flessibilità</strong> di integrazione</li>
-<li><strong>Sintesi</strong> per analisi mirate ed efficaci</li>
-<li>Rappresentazione <strong>multidimensionale</strong>, intuitiva ed efficacemente manipolabile, soprattutto in tempo e area geografica</li>
-<li><strong>Correttezza e completezza</strong> dei dati integrati</li>
-</ul>
-<h2>Data Warehouse</h2>
-<p>Cuore del data warehousing, collezione di dati di supporto al processo decisionale che richiede una modellazione specifica, finalizzata all'analisi dei dati.</p>
-<p>Quindi un DW dev'essere:</p>
-<ul>
-<li>orientato ai <strong>soggetti</strong>: tiene conto di chi lo utilizza</li>
-<li><strong>integrato</strong> e consistente: vi confluiscono dati da di versi sistemi operazionali<ul>
-<li>come inserirli?</li>
-<li>come renderli consistenti fra loro?</li>
+<li>Strutturali: stesso concetto, ma costrutti diversi<ul>
+<li>di chiave: identificatori diversi per lo stesso nome</li>
+<li>di dipendenza: correlazione con vincoli diversi (1,N invece che 1,1 etc)</li>
 </ul>
 </li>
-<li><strong>tempo</strong> fondamentale: tiene conto di tutte le transazioni</li>
-<li><strong>non volatile</strong></li>
+<li>Semantici: stessa porzione di mondo reale, ma a diversi livelli di astrazione</li>
 </ul>
-<h3><a name="modalita-utilizzo"></a> Modalità di utilizzo</h3>
-<p>Le modalità di utilizzo di una base dati sono:</p>
+<h4>Matching concept</h4>
 <ul>
-<li><strong>O</strong>n<strong>L</strong>ine <strong>T</strong>ransaction <strong>P</strong>rocessing:
-tradizionale modalità, dati di dettaglio aggiornati, proprietà ACIDE</li>
-<li><strong>O</strong>n<strong>L</strong>ine <strong>A</strong>nalytical <strong>P</strong>rocessing:
-operazioni complesse ed estemporanee, dati storici, operazioni di sola lettura</li>
-</ul></body>
+<li>Identità: usato lo stesso costrutto</li>
+<li>Equivalenza: costrutti diversi, ma equivalenti</li>
+<li>Compatibilità: i costrutti e i punti di vista dei progettisti non sono in contrasto fra loro</li>
+<li>Incompatibilità: gli schemi sono in contrasto a causa di incoerenza nelle specifiche</li>
+</ul>
+<h4>Unificazione</h4>
+<p>Scopo di questa fase è la risoluzione dei conflitti per giungere ad una rappresentazione unificata.
+Non sempre i conflitti possono essere risolti, viene chiesto all'utente.
+In caso di incertezza si preferiscono le trasformazioni che avvantaggiano gli schemi più importanti per il DM.</p>
+<p>Esempio: Entità PRODOTTO(Prezzo) del database di produzione, entità PRODOTTO(Prezzo) del database delle vendite -&gt; entità PRODOTTO(Prezzo-prod,Prezzo-vendita).</p>
+<p>Per fondere gli schemi si utilizzano le proprietà inter-schema, esempio: in un db IMPIEGATO, nell'altro MANAGER, relazione di inclusione manager -&gt; impiegato.</p></body>
 </html>

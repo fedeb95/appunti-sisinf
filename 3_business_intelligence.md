@@ -6,8 +6,8 @@ I sistemi informativi [operativi](./1_introduzione.html#si-operativi) o [istituz
 
 I processi si dividono in:
 
-* operativi: [decisioni strutturate](./business_process.html#teoria-simon), con regole precise
-* direzionali: [decisioni non strutturate](./business_process.html#teoria-simon),dati fortemente aggregati
+* operativi: [decisioni strutturate](./2_business_process.html#teoria-simon), con regole precise
+* direzionali: [decisioni non strutturate](./2_business_process.html#teoria-simon),dati fortemente aggregati
 
 Di conseguenza i sistemi informativi possono essere:
 
@@ -60,7 +60,7 @@ Cuore del data warehousing, collezione di dati di supporto al processo decisiona
 Quindi un DW dev'essere:
 
 * orientato ai **soggetti**: tiene conto di chi lo utilizza
-* **integrato** e consistente: vi confluiscono dati da di versi sistemi operazionali
+* **integrato** e consistente: vi confluiscono dati da diversi sistemi operazionali
   * come inserirli?
   * come renderli consistenti fra loro?
 * **tempo** fondamentale: tiene conto di tutte le transazioni
